@@ -9,9 +9,10 @@ class BooksSpider(scrapy.Spider):
     
     def parse(self, response):
         all_article_books = response.css("article.product_pod")
-        items = BooksScrapperItem()
         
         for book_article in all_article_books:
+            items = BooksScrapperItem()
+            
             title = book_article.css('h3 a::text').extract_first()
             
             price = book_article.css('div.product_price p.price_color::text').extract_first()
